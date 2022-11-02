@@ -73,14 +73,14 @@
                         </h2>
                         <p>
                             Interactive Biannual Early Release Estimates provide health statistics based
-                            on data from the 2019-2020 National Health Interview Survey (NHIS)
+                            on data from the 2019-2022 National Health Interview Survey (NHIS)
                             for selected health topics for adults aged 18 years and over.
                             All estimates are unadjusted percentages based on preliminary data files
                             and are released prior to final data editing and final weighting to provide access
                             to the most recent information from the NHIS. Estimates can be grouped by demographic
                             characteristics (such as age, race and Hispanic origin, or sex).
-                            Estimates based on 2019-2020 NHIS quarterly data are available in
-                            <a href="https://wwwndev.cdc.gov/NHISDataQueryTool/ER_Quarterly3/index_quarterly.html" target="_blank_"> Interactive Quarterly Early Release Estimates.</a>
+                            Estimates based on 2019-2022 NHIS quarterly data are available in
+                            <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Quarterly/index_quarterly.html" target="_blank_"> Interactive Quarterly Early Release Estimates.</a>
                             Estimates based on the 1997–2018 NHIS can be found in
                             <a href="https://www.cdc.gov/nchs/nhis/erkeyindicators.htm" target="_blank_"> Previous Early Release Reports on Key Health Indicators. </a>
                         </p>
@@ -119,6 +119,12 @@
                                     <option value="Mental">Did not get needed mental health care due to cost</option>
                                     <option value="No_Pres">Did not take medication as prescribed to save money</option>
                                 </optgroup>
+                                <optgroup label="Health insurance coverage">
+                                    <option value="Uninsured">Uninsured at time of interview: Adults aged 18-64</option>
+                                    <option value="Private">Private health insurance coverage at time of interview: Adults aged 18-64</option>
+                                    <option value="Public">Public health plan coverage at time of interview: Adults aged 18-64</option>
+                                    <option value="EXCOV">Exchange-based health plan coverage at time of interview: Adults aged 18-64</option>
+                                </optgroup>
                                 <optgroup label="Health behaviors">
                                     <option value="Smk_now">Current cigarette smoking</option>
                                     <option value="e_cig">Current electronic cigarette use</option>
@@ -145,18 +151,25 @@
                                 <legend class="usa-sr-only">Select years</legend>
                                 <div class="flex-parent">
                                     <div class="flex-child-fill year-start">
-                                        <label for="year-start">Half:</label>
+                                        <label for="year-start">From:</label>
                                         <select id="year-start">
+                                            <option value="2019, Jan-Jun" selected>2019, Jan-Jun</option>
                                             <option value="2019, Jul-Dec">2019, Jul-Dec</option>
                                             <option value="2020, Jan-Jun">2020, Jan-Jun</option>
-                                            <option value="2020, Jul-Dec">2019, Jul-Dec</option>
-                                            <option value="2019, Jan-Jun" selected>2019, Jan-Junc</option>
+                                            <option value="2020, Jul-Dec">2020, Jul-Dec</option>
+                                            <option value="2021, Jan-Jun">2021, Jan-Jun</option>
+                                            <option value="2021, Jul-Dec">2021, Jul-Dec</option>
+                                            <option value="2022, Jan-Jun">2022, Jan-Jun</option>
+
                                         </select>
                                     </div>
                                     <div class="flex-child-fill year-main">
                                         <label for="year">to:</label>
                                         <select id="year">
-                                            <option value="2020, Jul-Dec" selected>2020, Jul-Dec</option>
+                                            <option value="2022, Jan-Jun" selected>2022, Jan-Jun</option>
+                                            <option value="2021, Jul-Dec">2021, Jul-Dec</option>
+                                            <option value="2021, Jan-Jun">2021, Jan-Jun</option>
+                                            <option value="2020, Jul-Dec">2020, Jul-Dec</option>
                                             <option value="2020, Jan-Jun">2020, Jan-Jun</option>
                                             <option value="2019, Jul-Dec">2019, Jul-Dec</option>
                                             <option value="2019, Jan-Jun">2019, Jan-Jun</option>
@@ -165,7 +178,7 @@
                                 </div>
                             </fieldset>
                             <fieldset class="">
-                                <label for="col_var" class="">Group by:</label>
+                                <label for="col_var" class="">Compare by:</label>
                                 <div role="group">
                                     <div role="group">
                                         <select id="col_var">
@@ -175,6 +188,7 @@
                                                 <option value="agegrps">Age groups</option>
                                                 <option value="hisprace">Hispanic origin and race</option>
                                                 <option value="msa">Place of residence</option>
+                                                <option value="region">Region</option>
                                             </optgroup>
                                             <optgroup label="Socio-economic status">
                                                 <option value="education">Education</option>
@@ -264,10 +278,10 @@
                             </div>
                             <div id="table-tab" class="tab-pane active">
                                 <div class="caption-block">
+                                    <span id="table-title" class="caption"></span>
                                     <a id="dl-table" title="" data-original-title="Download table" tabindex="0" class="em-tooltip usa-button download-button">
                                         <span class="usa-sr-only">Download table</span>
                                     </a>
-                                    <span id="table-title" class="caption"></span>
                                     <!--      <span id="table-caption" role="region" aria-live="polite" class="caption"></span> -->
                                 </div>
                                 <div id="loading">Loading data...</div>
@@ -280,11 +294,11 @@
                                     <br>
                                     <span id="notes"></span>
                                     <p></p>
+                                    <p>
                                         Due to the COVID-19 pandemic, NHIS data collection switched to a telephone-only mode beginning March 19, 2020.
-                                        Personal visits resumed in all areas in September 2020, but cases were still attempted by telephone first.
-                                        These changes resulted in <a href=" https://www.cdc.gov/nchs/data/nhis/earlyrelease/nonresponse202102-508.pdf" target="_blank_">
-                                        lower response rates and differences in respondent characteristics</a> for April&#8211December 2020.
-                                        Differences observed in estimates between April 2020&#8211December 2020 and earlier time periods may still be impacted by these changes.
+                                        Personal visits (with telephone attempts first) resumed in all areas in September 2020. In addition, from August-December 2020, a subsample of adult respondents
+                                        who completed the NHIS in 2019 were recontacted by telephone and asked to participate again. Response rates were lower and respondent characteristics were different
+                                        in April–December 2020. Differences observed in estimates between April–December 2020 and other time periods may have been impacted by these differences in respondent characteristics.
                                     </p>
                                 <!--    <p>
                                         Due to the COVID-19 pandemic, NHIS data collection switched to a telephone-only mode beginning March 19, 2020.
@@ -293,7 +307,7 @@
                                     </p>-->
                                     <p>
                                         Based on household interviews of a sample of the civilian noninstitutionalized population. All estimates are based on preliminary data files. Unknowns were not included in the denominators when calculating percentages. For more information on the data source, methods, and definitions used for this table or chart, refer to the
-                                        <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202108-tech-508.pdf" target="_blank_">
+                                        <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                             Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                         </a>
                                     </p>
@@ -305,16 +319,15 @@
                             </div>
                             <div id="plot-tab" class="tab-pane">
                                 <div class="caption-block plot-dependent">
-                                    <a id="dl-plot" title="" data-original-title="Download plot" tabindex="0" class="em-tooltip usa-button download-button">
+                                    <span id="plot-title" class="caption"></span>
+                                                                        <a id="dl-plot" title="" data-original-title="Download plot" tabindex="0" class="em-tooltip usa-button download-button">
                                         <span class="usa-sr-only">Download plot</span>
                                     </a>
-                                    <span id="plot-title" class="caption"></span>
                                     <!--        <span id="plot-caption" role="region" aria-live="polite" class="caption"></span>  -->
                                 </div>
                                 <div id="meps-plot" class="plot-dependent"></div>
                                 <div id="plot-warning">No non-missing data available for selections. Please try again.</div>
                                 <div id="plot-footnotes" class="in-front plot-dependent" role="region" aria-live="polite"></div>
-                                <h3>Notes</h3>
                                 <h3>Notes</h3>
                                 <!--       <span id="plot-caption3"></span>  -->
                                 <span id="plot-qnotes"></span>
@@ -322,15 +335,16 @@
                                 <span id="plotnotes"></span>
                                 <p></p>
                                 <p>
-                                    Due to the COVID-19 pandemic, NHIS data collection switched to a telephone-only mode beginning March 19, 2020. 
-                                    This resulted in lower response rates and differences in respondent characteristics for Quarter 2 (April–June).
-                                    Differences observed in estimates between January–June 2020 and earlier time periods may be partially or fully attributable to these changes.
+                                    Due to the COVID-19 pandemic, NHIS data collection switched to a telephone-only mode beginning March 19, 2020. 
+                                    Personal visits (with telephone attempts first) resumed in all areas in September 2020. In addition, from August-December 2020, a subsample of adult respondents
+                                    who completed the NHIS in 2019 were recontacted by telephone and asked to participate again. Response rates were lower and respondent characteristics were different
+                                    in April–December 2020. Differences observed in estimates between April–December 2020 and other time periods may have been impacted by these differences in respondent characteristics.
                                 </p><p>
                                     Based on household interviews of a sample of the civilian noninstitutionalized population.
                                     All estimates are based on preliminary data files. Unknowns were not included in the denominators
                                     when calculating percentages. For more information on the data source, methods, and definitions
                                     used for this table or chart, refer to the
-                                    <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202108-tech-508.pdf" target="_blank_">
+                                    <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                         Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                     </a>
                                 </p>
@@ -348,7 +362,7 @@
         to provide access to the most recent information from the National Health Interview Survey.-->
                                     For more information on the data source, methods, and definitions used for these tables and charts,
                                     refer to the
-                                    <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202108-tech-508.pdf" target="_blank_">
+                                    <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                         Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                     </a>
                                 </p>

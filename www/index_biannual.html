@@ -73,14 +73,14 @@
                         </h2>
                         <p>
                             Interactive Biannual Early Release Estimates provide health statistics based
-                            on data from the 2019-2021 National Health Interview Survey (NHIS)
+                            on data from the 2019-2022 National Health Interview Survey (NHIS)
                             for selected health topics for adults aged 18 years and over.
                             All estimates are unadjusted percentages based on preliminary data files
                             and are released prior to final data editing and final weighting to provide access
                             to the most recent information from the NHIS. Estimates can be grouped by demographic
                             characteristics (such as age, race and Hispanic origin, or sex).
-                            Estimates based on 2019-2021 NHIS quarterly data are available in
-                            <a href="https://www.cdc.gov/NHISDataQueryTool/ER_Quarterly/index_quarterly.html" target="_blank_"> Interactive Quarterly Early Release Estimates.</a>
+                            Estimates based on 2019-2022 NHIS quarterly data are available in
+                            <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Quarterly/index_quarterly.html" target="_blank_"> Interactive Quarterly Early Release Estimates.</a>
                             Estimates based on the 1997–2018 NHIS can be found in
                             <a href="https://www.cdc.gov/nchs/nhis/erkeyindicators.htm" target="_blank_"> Previous Early Release Reports on Key Health Indicators. </a>
                         </p>
@@ -123,6 +123,7 @@
                                     <option value="Uninsured">Uninsured at time of interview: Adults aged 18-64</option>
                                     <option value="Private">Private health insurance coverage at time of interview: Adults aged 18-64</option>
                                     <option value="Public">Public health plan coverage at time of interview: Adults aged 18-64</option>
+                                    <option value="EXCOV">Exchange-based health plan coverage at time of interview: Adults aged 18-64</option>
                                 </optgroup>
                                 <optgroup label="Health behaviors">
                                     <option value="Smk_now">Current cigarette smoking</option>
@@ -150,20 +151,24 @@
                                 <legend class="usa-sr-only">Select years</legend>
                                 <div class="flex-parent">
                                     <div class="flex-child-fill year-start">
-                                        <label for="year-start">Half:</label>
+                                        <label for="year-start">From:</label>
                                         <select id="year-start">
                                             <option value="2019, Jan-Jun" selected>2019, Jan-Jun</option>
                                             <option value="2019, Jul-Dec">2019, Jul-Dec</option>
                                             <option value="2020, Jan-Jun">2020, Jan-Jun</option>
                                             <option value="2020, Jul-Dec">2020, Jul-Dec</option>
                                             <option value="2021, Jan-Jun">2021, Jan-Jun</option>
+                                            <option value="2021, Jul-Dec">2021, Jul-Dec</option>
+                                            <option value="2022, Jan-Jun">2022, Jan-Jun</option>
 
                                         </select>
                                     </div>
                                     <div class="flex-child-fill year-main">
                                         <label for="year">to:</label>
                                         <select id="year">
-                                            <option value="2021, Jan-Jun" selected>2021, Jan-Jun</option>
+                                            <option value="2022, Jan-Jun" selected>2022, Jan-Jun</option>
+                                            <option value="2021, Jul-Dec">2021, Jul-Dec</option>
+                                            <option value="2021, Jan-Jun">2021, Jan-Jun</option>
                                             <option value="2020, Jul-Dec">2020, Jul-Dec</option>
                                             <option value="2020, Jan-Jun">2020, Jan-Jun</option>
                                             <option value="2019, Jul-Dec">2019, Jul-Dec</option>
@@ -173,7 +178,7 @@
                                 </div>
                             </fieldset>
                             <fieldset class="">
-                                <label for="col_var" class="">Group by:</label>
+                                <label for="col_var" class="">Compare by:</label>
                                 <div role="group">
                                     <div role="group">
                                         <select id="col_var">
@@ -183,6 +188,7 @@
                                                 <option value="agegrps">Age groups</option>
                                                 <option value="hisprace">Hispanic origin and race</option>
                                                 <option value="msa">Place of residence</option>
+                                                <option value="region">Region</option>
                                             </optgroup>
                                             <optgroup label="Socio-economic status">
                                                 <option value="education">Education</option>
@@ -272,10 +278,10 @@
                             </div>
                             <div id="table-tab" class="tab-pane active">
                                 <div class="caption-block">
+                                    <span id="table-title" class="caption"></span>
                                     <a id="dl-table" title="" data-original-title="Download table" tabindex="0" class="em-tooltip usa-button download-button">
                                         <span class="usa-sr-only">Download table</span>
                                     </a>
-                                    <span id="table-title" class="caption"></span>
                                     <!--      <span id="table-caption" role="region" aria-live="polite" class="caption"></span> -->
                                 </div>
                                 <div id="loading">Loading data...</div>
@@ -301,7 +307,7 @@
                                     </p>-->
                                     <p>
                                         Based on household interviews of a sample of the civilian noninstitutionalized population. All estimates are based on preliminary data files. Unknowns were not included in the denominators when calculating percentages. For more information on the data source, methods, and definitions used for this table or chart, refer to the
-                                        <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202111-tech-508.pdf" target="_blank_">
+                                        <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                             Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                         </a>
                                     </p>
@@ -313,16 +319,15 @@
                             </div>
                             <div id="plot-tab" class="tab-pane">
                                 <div class="caption-block plot-dependent">
-                                    <a id="dl-plot" title="" data-original-title="Download plot" tabindex="0" class="em-tooltip usa-button download-button">
+                                    <span id="plot-title" class="caption"></span>
+                                                                        <a id="dl-plot" title="" data-original-title="Download plot" tabindex="0" class="em-tooltip usa-button download-button">
                                         <span class="usa-sr-only">Download plot</span>
                                     </a>
-                                    <span id="plot-title" class="caption"></span>
                                     <!--        <span id="plot-caption" role="region" aria-live="polite" class="caption"></span>  -->
                                 </div>
                                 <div id="meps-plot" class="plot-dependent"></div>
                                 <div id="plot-warning">No non-missing data available for selections. Please try again.</div>
                                 <div id="plot-footnotes" class="in-front plot-dependent" role="region" aria-live="polite"></div>
-                                <h3>Notes</h3>
                                 <h3>Notes</h3>
                                 <!--       <span id="plot-caption3"></span>  -->
                                 <span id="plot-qnotes"></span>
@@ -339,7 +344,7 @@
                                     All estimates are based on preliminary data files. Unknowns were not included in the denominators
                                     when calculating percentages. For more information on the data source, methods, and definitions
                                     used for this table or chart, refer to the
-                                    <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202111-tech-508.pdf" target="_blank_">
+                                    <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                         Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                     </a>
                                 </p>
@@ -357,7 +362,7 @@
         to provide access to the most recent information from the National Health Interview Survey.-->
                                     For more information on the data source, methods, and definitions used for these tables and charts,
                                     refer to the
-                                    <a href="https://www.cdc.gov/nchs/data/nhis/earlyrelease/earlyrelease202111-tech-508.pdf" target="_blank_">
+                                    <a href="https://wwwn.cdc.gov/NHISDataQueryTool/ER_Biannual/earlyrelease202211_tech.pdf" target="_blank_">
                                         Technical Notes for Early Release Estimates Based on data from the National Health Interview Survey.
                                     </a>
                                 </p>
