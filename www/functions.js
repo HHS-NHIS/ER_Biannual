@@ -697,6 +697,19 @@ String.prototype.replaceAll = function (find, replace) {
 
 
 
+function myFunction2() {
+    //var time = new Date().getHours();
+        qnewtitle3 = qnewtitle3.replace("aged 18", "aged 25")
+}
+function myFunction3() {
+    //var time = new Date().getHours();
+    qnewtitle3 = qnewtitle3.replace("aged 18 and over", "aged 18-64")
+}
+function myFunction4() {
+    //var time = new Date().getHours();
+    qnewtitle3 = qnewtitle3.replace("aged 18 and over", "aged 65 and over")
+   // qnewtitle3 = qnewtitle3.replace("aged 18-64", "aged 65 and over")
+}
 
       // Download files--------------------------------------------------------------
        function convertArrayOfObjectsToCSV(args) {
@@ -840,7 +853,7 @@ String.prototype.replaceAll = function (find, replace) {
        return indexes;
        }
        
-       function barPlotData(x_values, y_values, y_ses, y_labels, showSEs, hideYaxis) {
+       function barPlotData(x_values, y_values, y_ses, y_labels, showSEs, hideYaxis, ses_j2) {
        //function barPlotData(x_values, y_values, y_ses, y_labels, showSEs, hideYaxis, hovertemplate) {
        
        var plotdata = [];
@@ -857,10 +870,60 @@ String.prototype.replaceAll = function (find, replace) {
        var y_j   = selectIndexes(transpose(y_i), keep_j);
        var ses_j = selectIndexes(transpose(ses_i), keep_j);
        var x_lab = selectIndexes(x_values, keep_j).map(wrap15);
+
+
+           var ses_i2 = ["8.6 ,10.3", "14.9,20.4", "", "4.7 ,10.0", "", "9.2 ,20.7", ""];
+
+           function contains(arr, val) {
+               var test = [];
+               //for (var i = 0; i < arr.length; i++) {
+               if (arr && arr.length > 0) {
+                   for (var i = 0; i < arr.length; i++) {
+                       if (arr[i] === "") test[i] = val;
+
+                       else test[i] = arr[i];
+                   }
+                   return test;
+               }
+               return arr;
+           }
+           arr = ses_i2;
+           console.log(contains(arr, "*,*"));
+
+
+           var ses_j2 = contains(ses_i2, " *,* ");
+
+           //var ses_j2 = contains(ses_i, " *,* ");
+
+ //         function replaceEmptyWith(arr, val) {
+//             var _arr = [];
+//              if (arr && arr.length > 0) {
+//                  for (var i = 0; i < arr.length; i++) {
+//                       if (arr[i] === "") _arr[i] = val;
+//                      else _arr[i] = arr[i];
+//                   }
+//                   return _arr;
+//              }
+//               return arr;
+//           }
+
+//        var ses_j2 = replaceEmptyWith(ses_i, " , ");
+
+//function tina(ses_j) {
+  //   if(ses_j === null) return ses_j;
+   //  if(!isNaN(ses_j)) return ses_j*1;
+  //   var ses_j2 = ses_j.map(function(x){ return x.replace(/""/g,"'',''") });
+ //        var newstr = str.replaceAll(",","").replace("*","");
+ //    return ses_j2;
+  // }   
+
+
        
        // Transpose back to original orientation
        var y  = transpose(y_j);
        var ses = transpose(ses_j);
+    // var ses_j2 = ses.map(function(x){ return x.replace(/""/g,"'',''") });
+       //var ses_j2 = ses.replaceAll(" "," , ");
        var ci_test =  ses.toString().split(',');
        var lcl_char = ci_test[0];
        var ucl_char = ci_test[ci_test.length - 1];
@@ -988,8 +1051,23 @@ String.prototype.replaceAll = function (find, replace) {
      var LCL_array = []; var UCL_array = [];
      var SE_split = test[j].toString().split(",").map(Number);  // just split once
      //var SE_split2 = SE_split[j].map(toNumber);
+
+     // var y_se2 = y_se.filter(val => !isNaN(val))
+      //var sum = y_se2.reduce((a, b) => a + b, 0);
+      //var avg = (sum / y_se2.length) || 0;
+
+           var y_se2 = SE_split.filter(val => !isNaN(val))
+           var sum = y_se2.reduce((a, b) => a + b, 0);
+           var avg = (sum / y_se2.length) || 0;
+           var SE_split2 = SE_split.map(SE_split => { return isNaN(SE_split) ? avg : SE_split });
+
+
+
+
+
      
-     var LCL_new =  SE_split, UCL_new = [];
+     var LCL_new =  SE_split2, UCL_new = [];
+    // var LCL_new =  SE_split, UCL_new = [];
      for(var z = LCL_new.length-1; z >= 0; z--) {
        if(z % 2 === 1) {
          UCL_new.unshift(LCL_new.splice(z, 1)[0])
